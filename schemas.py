@@ -18,20 +18,27 @@ class Fornecedor(BaseModel):
     cidade: str
     frete: float
 
+class Endereco(BaseModel):
+    rua: str
+    numero: int
+    cep: str    
+    cidade: str
+    estado: str    
+
 class Cliente(BaseModel):
-    id : Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     nome: str
     cpf: str
     telefone: str
-    email: str        
+    email: str
+    endereco: Endereco # 1:1 embedded        
 
 class Pedido(BaseModel):
     id: Optional[str] = Field(None, alias="_id")
     data: datetime
     status: str
     valor_total: float
-    form_pag: str
-    cliente: Cliente # 1:1 - Embedding
+    cliente_id : str # 1:N - referencia
 
 class ItensPedido(BaseModel): # N:N - Coleção extra 
     id: Optional[str] = Field(None, alias="_id")
