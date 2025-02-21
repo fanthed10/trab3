@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 
 from routes import (
-    fornecedor_routes,cliente_routes, roupa_routes,pedido_routes,itensPedido_routes
+    fornecedor_routes,cliente_routes, roupa_routes,pedido_routes,itensPedido_routes,consulta_routes
 )
 
 app = FastAPI()
@@ -11,6 +11,7 @@ app.include_router(cliente_routes.router, prefix="/clientes", tags=["Clientes"])
 app.include_router(roupa_routes.router, prefix="/roupas", tags=["Roupas"])
 app.include_router(pedido_routes.router, prefix="/pedidos", tags=["Pedidos"])
 app.include_router(itensPedido_routes.router, prefix="/itensPedidos", tags=["Itens Pedidos"])
+app.include_router(consulta_routes.router, prefix="/consultas", tags= ["Consultas"])
 
 @app.get("/")
 def home():
